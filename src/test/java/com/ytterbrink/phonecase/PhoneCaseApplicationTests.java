@@ -1,6 +1,8 @@
 package com.ytterbrink.phonecase;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,12 +22,26 @@ class PhoneCaseApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private PhoneCaseRepository phoneCaseRepository;
+
     @Test
     void emptyResultsForEmptyDatabase() throws Exception{
-       this.mockMvc.perform(get("/"))
+       this.mockMvc.perform(get("/{}", "iphone"))
+                .andDo(print())
+                .andExpect(status().is(204))
+               .andExpect( content().string(""));
+    }
+
+    @Test
+    void getResultsForiPhone11() throws Exception {
+        PhoneCase artsy = new PhoneCase();
+        artsy.setName("ArtsyCase");
+        phoneCaseRepository.save(artsy);
+        this.mockMvc.perform(get("/{}", "iPhone11"))
                 .andDo(print())
                 .andExpect(status().isOk())
-               .andExpect( content().string(""));
+                .andExpect( content().string("[{\"name\":\"ArtsyCase\",\"id\":1}]"));
     }
 
 }
