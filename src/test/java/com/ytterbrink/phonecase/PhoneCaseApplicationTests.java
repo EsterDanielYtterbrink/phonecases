@@ -19,6 +19,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class PhoneCaseApplicationTests {
 
+    // TODO
+    // Add phones
+    // Find cases by phone model
+
     @Autowired
     private MockMvc mockMvc;
 
