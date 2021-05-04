@@ -1,4 +1,4 @@
-package com.ytterbrink.phonecase;
+package com.ytterbrink.phonecase.phonecase;
 
 
 import javax.persistence.Entity;

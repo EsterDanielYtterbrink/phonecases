@@ -1,5 +1,6 @@
-package com.ytterbrink.phonecase;
+package com.ytterbrink.phonecase.phonecase;
 
+import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class PhoneCaseController {
     }
 
     @GetMapping("/{phoneName}")
-    public ResponseEntity<List<PhoneCase>> phoneCases(@PathVariable String phoneName) throws NothingToSeeYetException{
+    public ResponseEntity<List<PhoneCase>> phoneCases(@PathVariable String phoneName) throws NothingToSeeYetException {
         List<PhoneCase> cases = phoneCaseRepository.findAll();
         if(cases.isEmpty()){
             throw new NothingToSeeYetException();

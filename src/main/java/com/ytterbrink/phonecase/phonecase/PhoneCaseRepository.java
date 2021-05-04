@@ -1,4 +1,4 @@
-package com.ytterbrink.phonecase;
+package com.ytterbrink.phonecase.phonecase;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;

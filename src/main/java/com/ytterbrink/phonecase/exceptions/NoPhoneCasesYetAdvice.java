@@ -1,5 +1,6 @@
-package com.ytterbrink.phonecase;
+package com.ytterbrink.phonecase.exceptions;
 
+import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -2,6 +2,8 @@ package com.ytterbrink.phonecase;
 
 import com.ytterbrink.phonecase.phone.Phone;
 import com.ytterbrink.phonecase.phone.PhoneRepository;
+import com.ytterbrink.phonecase.phonecase.PhoneCase;
+import com.ytterbrink.phonecase.phonecase.PhoneCaseRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class PhoneCaseApplicationTests {
 
     // TODO
-    // Clean up
     // Find cases by phone model
     // Fix duplication of controller logic
     // Fix how id is calculated
@@ -43,8 +44,7 @@ class PhoneCaseApplicationTests {
 
     @Test
     void getResultsForiPhone11() throws Exception {
-        PhoneCase artsy = new PhoneCase();
-        artsy.setName("ArtsyCase");
+        PhoneCase artsy = new PhoneCase("ArtsyCase");
         phoneCaseRepository.save(artsy);
         this.mockMvc.perform(get("/{}", "iPhone11"))
                 .andDo(print())
