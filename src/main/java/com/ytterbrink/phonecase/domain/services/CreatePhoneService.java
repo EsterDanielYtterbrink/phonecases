@@ -26,8 +26,17 @@ public class CreatePhoneService implements CreatePhoneFacade {
 
     @Override
     public Phone createPhone(Phone.PhoneParameters parameters) {
-        PhoneShape phoneShape = this.createPhoneShape.createPhoneShape(new PhoneShape());
-        Phone toSave = new Phone(parameters.getNewPhone().getName(), phoneShape);
-        return this.createPhone.createPhone(toSave);
+        PhoneShape phoneShape = null;
+        if(parameters.getSimilarPhoneName()!= null){
+            Phone similarPhone = findPhoneByName.findPhoneByName(parameters.getSimilarPhoneName());
+            if(similarPhone != null){
+                phoneShape = similarPhone.getPhoneShape();
+            }
+        }
+        if(phoneShape == null) {
+            phoneShape = createPhoneShape.createPhoneShape(new PhoneShape());
+        }
+        Phone toSave = new Phone(parameters.getNewPhoneName(), phoneShape);
+        return createPhone.createPhone(toSave);
     }
 }

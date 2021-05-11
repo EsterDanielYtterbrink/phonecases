@@ -2,14 +2,13 @@ package com.ytterbrink.phonecase.web;
 
 import com.ytterbrink.phonecase.domain.web_ports.AllPhoneCasesFacade;
 import com.ytterbrink.phonecase.domain.web_ports.FindCasesByPhoneNameFacade;
-import com.ytterbrink.phonecase.domain.web_ports.SavePhoneCaseFacade;
+import com.ytterbrink.phonecase.domain.web_ports.CreatePhoneCaseFacade;
 import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import com.ytterbrink.phonecase.domain.PhoneCase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.List;
 public class PhoneCaseController {
 
     @Autowired
-    public PhoneCaseController(AllPhoneCasesFacade allPhoneCases, FindCasesByPhoneNameFacade findCasesByPhoneName, SavePhoneCaseFacade savePhoneCase) {
+    public PhoneCaseController(AllPhoneCasesFacade allPhoneCases, FindCasesByPhoneNameFacade findCasesByPhoneName, CreatePhoneCaseFacade savePhoneCase) {
         this.allPhoneCases = allPhoneCases;
         this.findCasesByPhoneName = findCasesByPhoneName;
         this.savePhoneCase = savePhoneCase;
@@ -26,30 +25,30 @@ public class PhoneCaseController {
 
     private AllPhoneCasesFacade allPhoneCases;
     private FindCasesByPhoneNameFacade findCasesByPhoneName;
-    private SavePhoneCaseFacade savePhoneCase;
+    private CreatePhoneCaseFacade savePhoneCase;
 
-    @PostMapping("/phonecases")
+    @PostMapping("/phoneCases")
     @ResponseStatus(HttpStatus.CREATED)
-    public PhoneCase newPhoneCase(@RequestBody PhoneCase phoneCase){
-       return savePhoneCase.savePhoneCase(phoneCase);
+    public PhoneCase newPhoneCase(@RequestBody PhoneCase.PhoneCaseParameters phoneCase){
+       return savePhoneCase.createPhoneCase(phoneCase);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<PhoneCase>> allPhoneCases() throws NothingToSeeYetException{
+    @GetMapping("/phoneCases")
+    public List<PhoneCase> allPhoneCases() throws NothingToSeeYetException{
         List<PhoneCase> cases = allPhoneCases.allPhoneCases();
         if(cases.isEmpty()){
             throw new NothingToSeeYetException();
         }
-        return ResponseEntity.ok(cases);
+        return cases;
     }
 
-    @GetMapping("/{phoneName}")
-    public ResponseEntity<List<PhoneCase>> phoneCasesForPhone(@PathVariable String phoneName) throws NothingToSeeYetException, NoMatchingPhoneException {
+    @GetMapping("/phoneCases/{phoneName}")
+    public List<PhoneCase> phoneCasesForPhone(@PathVariable String phoneName) throws NothingToSeeYetException, NoMatchingPhoneException {
         List<PhoneCase> cases = findCasesByPhoneName.findCaseByPhone(phoneName);
         if(cases.isEmpty()){
             throw new NothingToSeeYetException();
         }
-        return ResponseEntity.ok(cases);
+        return cases;
     }
 
 }

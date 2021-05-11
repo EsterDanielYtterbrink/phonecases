@@ -1,6 +1,5 @@
 package com.ytterbrink.phonecase.domain.services;
 
-import com.ytterbrink.phonecase.data.repositories.PhoneRepository;
 import com.ytterbrink.phonecase.domain.Phone;
 import com.ytterbrink.phonecase.domain.data_ports.AllPhones;
 import com.ytterbrink.phonecase.domain.web_ports.AllPhonesFacade;
@@ -12,6 +11,7 @@ import java.util.List;
 public class AllPhonesService  implements AllPhonesFacade {
     private final AllPhones allPhones;
 
+    @Autowired
     public AllPhonesService(AllPhones allPhones) {
         this.allPhones = allPhones;
     }

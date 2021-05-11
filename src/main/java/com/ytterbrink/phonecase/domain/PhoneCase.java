@@ -1,5 +1,8 @@
 package com.ytterbrink.phonecase.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
@@ -19,10 +22,21 @@ public class PhoneCase {
     @Getter @Setter private String name;
 
     @ManyToOne()
+    @JsonIgnore
     @Getter @Setter private PhoneShape phoneShape;
 
     @Override
     public String toString() {
         return name;
     }
+
+
+    @Data
+    @AllArgsConstructor
+    public static class PhoneCaseParameters {
+
+        String name;
+        String madeFor;
+    }
 }
+

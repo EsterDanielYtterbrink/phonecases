@@ -14,10 +14,10 @@ public class CreatePhoneCaseAdapter implements CreatePhoneCase {
         this.repository = repository;
     }
 
-    private PhoneCaseRepository repository;
+    private final PhoneCaseRepository repository;
 
     @Override
-    public PhoneCase savePhoneCase(PhoneCase phoneCase) {
+    public PhoneCase createPhoneCase(PhoneCase phoneCase) {
         return repository.save(phoneCase);
     }
 }

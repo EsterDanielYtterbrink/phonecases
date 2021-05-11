@@ -1,5 +1,7 @@
 package com.ytterbrink.phonecase.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +21,7 @@ public class Phone {
     @Getter @Setter private String name;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonIgnore
     @Getter private PhoneShape phoneShape;
 
     protected Phone() { }
@@ -31,7 +34,7 @@ public class Phone {
     @AllArgsConstructor
     public static class PhoneParameters {
 
-        Phone newPhone;
+        String newPhoneName;
         String similarPhoneName;
     }
 }
