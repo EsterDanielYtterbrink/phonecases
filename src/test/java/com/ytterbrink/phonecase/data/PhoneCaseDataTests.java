@@ -1,4 +1,4 @@
-package com.ytterbrink.phonecase;
+package com.ytterbrink.phonecase.data;
 
 import com.ytterbrink.phonecase.domain.PhoneShape;
 import com.ytterbrink.phonecase.domain.PhoneCase;

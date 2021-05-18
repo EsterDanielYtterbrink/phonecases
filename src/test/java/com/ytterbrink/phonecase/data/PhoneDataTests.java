@@ -1,4 +1,4 @@
-package com.ytterbrink.phonecase;
+package com.ytterbrink.phonecase.data;
 
 import com.ytterbrink.phonecase.domain.Phone;
 import com.ytterbrink.phonecase.data.repositories.PhoneRepository;
