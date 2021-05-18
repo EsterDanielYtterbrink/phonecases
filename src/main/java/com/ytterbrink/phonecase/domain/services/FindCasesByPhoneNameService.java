@@ -7,6 +7,7 @@ import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
 import com.ytterbrink.phonecase.domain.data_ports.FindCasesByPhone;
 import com.ytterbrink.phonecase.domain.PhoneCase;
 
+import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,10 +28,14 @@ public class FindCasesByPhoneNameService implements FindCasesByPhoneNameFacade {
     }
 
     @Override
-    public List<PhoneCase> findCaseByPhone(String phoneName) throws NoMatchingPhoneException {
+    public List<PhoneCase> findCaseByPhone(String phoneName) throws NoMatchingPhoneException, NothingToSeeYetException {
         Phone phone = phoneFinder.findPhoneByName(phoneName);
        if(phone != null){
-           return casesFinder.findPhoneCaseByPhone(phone);
+           List<PhoneCase> cases = casesFinder.findPhoneCaseByPhone(phone);
+           if(cases == null || cases.isEmpty()){
+               throw new NothingToSeeYetException();
+           }
+           return cases;
        }
        throw new NoMatchingPhoneException();
     }

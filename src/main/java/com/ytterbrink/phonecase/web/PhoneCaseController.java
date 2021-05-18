@@ -43,12 +43,7 @@ public class PhoneCaseController {
     }
 
     @GetMapping("/phoneCases/{phoneName}")
-    public List<PhoneCase> phoneCasesForPhone(@PathVariable String phoneName) throws NothingToSeeYetException, NoMatchingPhoneException {
-        List<PhoneCase> cases = findCasesByPhoneName.findCaseByPhone(phoneName);
-        if(cases.isEmpty()){
-            throw new NothingToSeeYetException();
-        }
-        return cases;
+    public List<PhoneCase> phoneCasesForPhone(@PathVariable String phoneName) throws NothingToSeeYetException, NoMatchingPhoneException {return findCasesByPhoneName.findCaseByPhone(phoneName);
     }
 
 }
