@@ -20,7 +20,6 @@ public class FindPhoneShapeByPhoneNameAdapter  implements FindPhoneShapeByPhoneN
 
     @Override
     public PhoneShape findPhoneShapeByPhoneName(String name) {
-       Phone phone = repository.findOneByName(name);
-       return phone.getPhoneShape();
+       return repository.findOneByName(name).getPhoneShape();
     }
 }

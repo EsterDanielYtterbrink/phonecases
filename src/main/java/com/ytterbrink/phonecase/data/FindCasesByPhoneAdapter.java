@@ -24,7 +24,6 @@ public class FindCasesByPhoneAdapter implements FindCasesByPhone {
 
     @Override
     public List<PhoneCase> findPhoneCaseByPhone(Phone phone) {
-        PhoneShape shape = phone.getPhoneShape();
-        return phoneCaseRepository.findAllByPhoneShape(shape);
+        return phoneCaseRepository.findAllByPhoneShape(phone.getPhoneShape());
     }
 }
