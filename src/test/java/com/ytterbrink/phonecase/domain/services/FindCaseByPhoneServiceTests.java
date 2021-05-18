@@ -1,4 +1,4 @@
-package com.ytterbrink.phonecase;
+package com.ytterbrink.phonecase.domain.services;
 
 import com.ytterbrink.phonecase.domain.services.FindCasesByPhoneNameService;
 import com.ytterbrink.phonecase.domain.*;

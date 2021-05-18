@@ -38,9 +38,7 @@ class PhoneCaseApplicationTests {
     @Test
     @DirtiesContext
     void createOnePhone() throws Exception{
-        mockMvc.perform(post("/phones")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"newPhoneName\":\"iPhone5\"}}"))
+        createiPhone5()
                 .andExpect(status().isCreated());
     }
 
@@ -64,23 +62,16 @@ class PhoneCaseApplicationTests {
                 .andExpect(status().isCreated());
     }
 
-
-
     @Test
     @DirtiesContext
     void getAllPhones() throws Exception{
-        mockMvc.perform(post("/phones")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"newPhoneName\":\"iPhone5\"}}"))
-                .andExpect(status().isCreated());
-
+        createiPhone5();
         this.mockMvc.perform(get("/phones"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json("[{\"name\":\"iPhone5\"}]", false));
-
-
     }
+
     @Test
     @DirtiesContext
     void getAllPhoneCases(){
