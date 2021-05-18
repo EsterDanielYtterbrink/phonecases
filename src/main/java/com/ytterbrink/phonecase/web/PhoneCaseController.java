@@ -35,15 +35,12 @@ public class PhoneCaseController {
 
     @GetMapping("/phoneCases")
     public List<PhoneCase> allPhoneCases() throws NothingToSeeYetException{
-        List<PhoneCase> cases = allPhoneCases.allPhoneCases();
-        if(cases.isEmpty()){
-            throw new NothingToSeeYetException();
-        }
-        return cases;
+        return allPhoneCases.allPhoneCases();
     }
 
     @GetMapping("/phoneCases/{phoneName}")
-    public List<PhoneCase> phoneCasesForPhone(@PathVariable String phoneName) throws NothingToSeeYetException, NoMatchingPhoneException {return findCasesByPhoneName.findCaseByPhone(phoneName);
+    public List<PhoneCase> phoneCasesForPhone(@PathVariable String phoneName) throws NothingToSeeYetException, NoMatchingPhoneException {
+        return findCasesByPhoneName.findCaseByPhone(phoneName);
     }
 
 }

@@ -31,10 +31,6 @@ public class PhoneController {
 
     @GetMapping("/phones")
     public List<Phone> allPhones() throws NothingToSeeYetException {
-        List<Phone> phones = allPhones.allPhones();
-        if(phones.isEmpty()){
-            throw new NothingToSeeYetException();
-        }
-        return phones;
+        return allPhones.allPhones();
     }
 }

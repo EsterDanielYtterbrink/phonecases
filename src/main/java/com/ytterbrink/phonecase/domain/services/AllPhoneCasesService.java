@@ -4,6 +4,7 @@ import com.ytterbrink.phonecase.domain.PhoneCase;
 import com.ytterbrink.phonecase.domain.data_ports.AllPhoneCases;
 import com.ytterbrink.phonecase.domain.web_ports.AllPhoneCasesFacade;
 
+import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,11 @@ public class AllPhoneCasesService implements AllPhoneCasesFacade {
     }
 
     @Override
-    public List<PhoneCase> allPhoneCases() {
-        return allPhoneCases.allPhoneCases();
+    public List<PhoneCase> allPhoneCases() throws NothingToSeeYetException {
+        List<PhoneCase> allCases = allPhoneCases.allPhoneCases();
+        if(allCases == null || allCases.isEmpty()){
+            throw new NothingToSeeYetException();
+        }
+        return allCases;
     }
 }
