@@ -7,6 +7,8 @@ import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class FindPhoneByNameAdapter implements FindPhoneByName {
 
@@ -18,7 +20,7 @@ public class FindPhoneByNameAdapter implements FindPhoneByName {
     }
 
     @Override
-    public Phone findPhoneByName(String name) {
-        return phoneRepository.findOneByName(name);
+    public Optional<Phone> findPhoneByName(String name) {
+        return Optional.ofNullable(phoneRepository.findOneByName(name));
     }
 }

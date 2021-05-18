@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -31,9 +32,13 @@ public class Phone {
     }
 
     @Data
-    @AllArgsConstructor
     public static class PhoneParameters {
         String newPhoneName;
-        String similarPhoneName;
+        Optional<String> similarPhoneName;
+
+        public PhoneParameters(String newPhoneName, String similarPhoneName) {
+            this.newPhoneName = newPhoneName;
+            this.similarPhoneName = Optional.ofNullable(similarPhoneName);
+        }
     }
 }

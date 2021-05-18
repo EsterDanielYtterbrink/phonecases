@@ -3,11 +3,8 @@ package com.ytterbrink.phonecase.domain.services;
 import com.ytterbrink.phonecase.domain.PhoneCase;
 import com.ytterbrink.phonecase.domain.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhoneCase;
-import com.ytterbrink.phonecase.domain.data_ports.FindPhoneShapeByPhoneName;
-import lombok.Getter;
+import com.ytterbrink.phonecase.doubles.FindPhoneShapeByPhoneNameMock;
 import org.junit.jupiter.api.Test;
-
-import javax.imageio.stream.IIOByteBuffer;
 
 import java.util.UUID;
 
@@ -27,25 +24,6 @@ class SavePhoneCaseServiceTest {
         public PhoneCase createPhoneCase(PhoneCase phoneCase) {
             this.phoneCase = phoneCase;
             return phoneCase;
-        }
-    }
-    private class FindPhoneShapeByPhoneNameMock implements FindPhoneShapeByPhoneName {
-
-        @Getter
-        private final PhoneShape phoneShape;
-        private final String phoneName;
-
-        public FindPhoneShapeByPhoneNameMock(PhoneShape phoneShape, String name) {
-            this.phoneShape = phoneShape;
-            this.phoneName = name;
-        }
-
-        @Override
-        public PhoneShape findPhoneShapeByPhoneName(String name) {
-            if(name.equals(phoneName)){
-                return phoneShape;
-            }
-            return null;
         }
     }
 

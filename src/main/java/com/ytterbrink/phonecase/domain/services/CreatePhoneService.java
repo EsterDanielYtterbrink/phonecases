@@ -5,38 +5,36 @@ import com.ytterbrink.phonecase.domain.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhone;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
+import com.ytterbrink.phonecase.domain.data_ports.FindPhoneShapeByPhoneName;
 import com.ytterbrink.phonecase.domain.web_ports.CreatePhoneFacade;
 
+import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CreatePhoneService implements CreatePhoneFacade {
 
     CreatePhone createPhone;
-    FindPhoneByName findPhoneByName;
+    FindPhoneShapeByPhoneName findPhoneShapeByPhoneName;
     CreatePhoneShape createPhoneShape;
 
     @Autowired
-    public CreatePhoneService(CreatePhone createPhone, FindPhoneByName findPhoneByName, CreatePhoneShape createPhoneShape) {
+    public CreatePhoneService(CreatePhone createPhone, FindPhoneShapeByPhoneName  findPhoneShapeByPhoneName, CreatePhoneShape createPhoneShape) {
         this.createPhone = createPhone;
-        this.findPhoneByName = findPhoneByName;
+        this.findPhoneShapeByPhoneName = findPhoneShapeByPhoneName;
         this.createPhoneShape = createPhoneShape;
     }
 
     @Override
     public Phone createPhone(Phone.PhoneParameters parameters) {
-        PhoneShape phoneShape = null;
-        if(parameters.getSimilarPhoneName()!= null){
-            Phone similarPhone = findPhoneByName.findPhoneByName(parameters.getSimilarPhoneName());
-            if(similarPhone != null){
-                phoneShape = similarPhone.getPhoneShape();
-            }
-        }
-        if(phoneShape == null) {
-            phoneShape = createPhoneShape.createPhoneShape(new PhoneShape());
-        }
-        Phone toSave = new Phone(parameters.getNewPhoneName(), phoneShape);
-        return createPhone.createPhone(toSave);
+        String phoneName = parameters.getNewPhoneName();
+        PhoneShape phoneShape = parameters.getSimilarPhoneName()
+                .map(findPhoneShapeByPhoneName::findPhoneShapeByPhoneName)
+                .orElseGet(() -> createPhoneShape.createPhoneShape(new PhoneShape()));
+        return createPhone.createPhone(new Phone(phoneName, phoneShape));
     }
+
 }

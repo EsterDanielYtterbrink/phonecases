@@ -3,6 +3,8 @@ package com.ytterbrink.phonecase.doubles;
 import com.ytterbrink.phonecase.domain.Phone;
 import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
 
+import java.util.Optional;
+
 public class FindPhoneByNameMock implements FindPhoneByName {
 
     private Phone phone;
@@ -12,7 +14,7 @@ public class FindPhoneByNameMock implements FindPhoneByName {
     }
 
     @Override
-    public Phone findPhoneByName(String name) {
-        return this.phone;
+    public Optional<Phone> findPhoneByName(String name) {
+        return Optional.ofNullable(phone);
     }
 }

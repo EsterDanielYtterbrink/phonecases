@@ -7,17 +7,21 @@ import com.ytterbrink.phonecase.domain.data_ports.CreatePhone;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhoneShape;
 import com.ytterbrink.phonecase.domain.services.CreatePhoneService;
 import com.ytterbrink.phonecase.doubles.FindPhoneByNameMock;
+import com.ytterbrink.phonecase.doubles.FindPhoneShapeByPhoneNameMock;
+import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.ManyToOne;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SavePhoneServiceTests {
+public class CreatePhoneServiceTests {
+
 
     class CreatePhoneSpy implements CreatePhone{
         @Getter
@@ -33,8 +37,8 @@ public class SavePhoneServiceTests {
         private PhoneShape shape;
         @Override
         public PhoneShape createPhoneShape(PhoneShape phoneShape) {
-            this.shape = phoneShape;
             phoneShape.setId(UUID.randomUUID());
+            this.shape = phoneShape;
             return phoneShape;
         }
         public PhoneShape getShape(){
@@ -43,31 +47,38 @@ public class SavePhoneServiceTests {
     }
 
     @Test
-    public void savesPhoneAndCreateNewPhoneShape(){
+    public void savesPhoneAndCreateNewPhoneShape() {
         Phone toSave = new Phone("toSave", null);
         Phone.PhoneParameters parameters = new Phone.PhoneParameters(toSave.getName(), null);
         CreatePhoneSpy createPhoneSpy = new CreatePhoneSpy();
-        FindPhoneByNameMock findPhoneByNameMock = new FindPhoneByNameMock(new Phone("dummy", new PhoneShape()));
+        FindPhoneShapeByPhoneNameMock findPhoneShapeByPhoneNameMock = new FindPhoneShapeByPhoneNameMock(new PhoneShape(), "dummy");
+
         CreatePhoneShapeSpy createPhoneShapeSpy = new CreatePhoneShapeSpy();
-        CreatePhoneService service = new CreatePhoneService(createPhoneSpy,findPhoneByNameMock, createPhoneShapeSpy);
+        CreatePhoneService service = new CreatePhoneService(createPhoneSpy,findPhoneShapeByPhoneNameMock, createPhoneShapeSpy);
         Phone createdPhone = service.createPhone(parameters);
         assertThat(createdPhone.getName()).isEqualTo(toSave.getName());
-        assertThat(createPhoneShapeSpy.getShape()).isNotNull();
-        assertThat(createPhoneShapeSpy.getShape()).isEqualTo(createPhoneShapeSpy.getShape());
+        assertThat(createdPhone.getPhoneShape()).isNotNull();
+        assertThat(createPhoneShapeSpy.getShape()).isEqualTo(createdPhone.getPhoneShape());
     }
     @Test
     public void savesPhoneWithOldPhoneShape(){
+        class CreatePhoneShapeZombie implements CreatePhoneShape {
+
+            @Override
+            public PhoneShape createPhoneShape(PhoneShape phoneShape) {
+               throw new RuntimeException();
+            }
+        }
         Phone toSave = new Phone("toSave", null);
         Phone.PhoneParameters parameters = new Phone.PhoneParameters(toSave.getName(), "iPhoneSE");
         CreatePhoneSpy createPhoneSpy = new CreatePhoneSpy();
         PhoneShape oldShape = new PhoneShape();
-        FindPhoneByNameMock findPhoneByNameMock = new FindPhoneByNameMock(new Phone("iPhoneSE", oldShape));
-        CreatePhoneShapeSpy createPhoneShapeSpy = new CreatePhoneShapeSpy();
-        CreatePhoneService service = new CreatePhoneService(createPhoneSpy, findPhoneByNameMock, createPhoneShapeSpy);
+        oldShape.setId(UUID.randomUUID());
+        FindPhoneShapeByPhoneNameMock findPhoneShapeByPhoneNameMock = new FindPhoneShapeByPhoneNameMock(oldShape, "iPhoneSE");
+        CreatePhoneShapeZombie createPhoneShapeZombie = new CreatePhoneShapeZombie();
+        CreatePhoneService service = new CreatePhoneService(createPhoneSpy, findPhoneShapeByPhoneNameMock, createPhoneShapeZombie);
         Phone createdPhone = service.createPhone(parameters);
         assertThat(createdPhone.getName()).isEqualTo(toSave.getName());
-        assertThat(createPhoneShapeSpy.getShape()).isNull();
         assertThat(createdPhone.getPhoneShape()).isEqualTo(oldShape);
-
     }
 }

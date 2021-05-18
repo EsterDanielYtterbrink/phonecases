@@ -11,6 +11,7 @@ import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -29,14 +30,11 @@ public class FindCasesByPhoneNameService implements FindCasesByPhoneNameFacade {
 
     @Override
     public List<PhoneCase> findCaseByPhone(String phoneName) throws NoMatchingPhoneException, NothingToSeeYetException {
-        Phone phone = phoneFinder.findPhoneByName(phoneName);
-       if(phone != null){
-           List<PhoneCase> cases = casesFinder.findPhoneCaseByPhone(phone);
-           if(cases == null || cases.isEmpty()){
-               throw new NothingToSeeYetException();
-           }
-           return cases;
-       }
-       throw new NoMatchingPhoneException();
+        Phone phone  = phoneFinder.findPhoneByName(phoneName).orElseThrow(NoMatchingPhoneException::new);
+        List<PhoneCase> cases = casesFinder.findPhoneCaseByPhone(phone);
+        if(cases == null || cases.isEmpty()){
+            throw new NothingToSeeYetException();
+        }
+        return cases;
     }
 }
