@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class PhoneCaseApplicationTests {
 
     // TODO
-    // Find cases by phone model
     // Make it proper REST
     // Fix duplication of controller logic
     // Fix how id is calculated
@@ -45,55 +44,40 @@ class PhoneCaseApplicationTests {
 
     @Test
     @DirtiesContext
-    void createOnePhone() throws Exception{
+    void integrationTest() throws Exception{
+        // Create a phone
         createiPhone5()
                 .andExpect(status().isCreated());
-    }
 
-    @Test
-    @DirtiesContext
-    void emptyResultsForEmptyDatabase() throws Exception{
-        createiPhone5();
-        this.mockMvc.perform(get("/phoneCases/{phone}", "iPhone5"))
-                .andDo(print())
-                .andExpect(status().is(204))
-               .andExpect( content().string(""));
-    }
-
-    @Test
-    @DirtiesContext
-    void createOnePhoneCase() throws Exception{
-        createiPhone5();
-        mockMvc.perform(post("/phoneCases")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"madeFor\":\"iPhone5\", \"name\":\"Pretty case\"}}"))
-                .andExpect(status().isCreated());
-    }
-
-    @Test
-    @DirtiesContext
-    void getAllPhones() throws Exception{
-        createiPhone5();
+        // Get the newly created phone
         this.mockMvc.perform(get("/phones"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json("[{\"name\":\"iPhone5\"}]", false));
-    }
 
-    @Test
-    @DirtiesContext
-    void getPhoneCaseForSimilarPhone() throws Exception {
-        createPhone("iPhone5");
-        createPhone("iPhoneSE", "iPhone5");
-        createPhone("iPhone11");
+        //List all cases when there are none
+        this.mockMvc.perform(get("/phoneCases/{phone}", "iPhone5"))
+                .andDo(print())
+                .andExpect(status().is(204))
+               .andExpect( content().string(""));
+
+        //Create a first phone case
         mockMvc.perform(post("/phoneCases")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"madeFor\":\"iPhone5\", \"name\":\"Pretty case\"}}"))
                 .andExpect(status().isCreated());
+
+        //Create more phones
+        createPhone("iPhoneSE", "iPhone5");
+        createPhone("iPhone11");
+
+        // And more phone cases
         mockMvc.perform(post("/phoneCases")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"madeFor\":\"iPhone11\", \"name\":\"Big case\"}}"))
                 .andExpect(status().isCreated());
+
+        // Check that we can get cases that fit iPhoneSE also when they are created for iPhone5
         this.mockMvc.perform(get("/phoneCases"))
                 .andDo(print())
                 .andExpect(status().isOk())

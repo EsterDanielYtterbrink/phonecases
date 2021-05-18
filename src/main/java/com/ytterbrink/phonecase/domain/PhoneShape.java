@@ -1,6 +1,5 @@
 package com.ytterbrink.phonecase.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

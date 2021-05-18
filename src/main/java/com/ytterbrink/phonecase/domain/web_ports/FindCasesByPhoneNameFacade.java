@@ -6,8 +6,6 @@ import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import java.util.List;
 
 public interface FindCasesByPhoneNameFacade {
-
     List<PhoneCase> findCaseByPhone(String phoneName) throws NoMatchingPhoneException;
-
 }
 

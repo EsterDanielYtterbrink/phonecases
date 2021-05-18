@@ -1,10 +1,10 @@
 package com.ytterbrink.phonecase.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+
 import java.util.UUID;
 
 @Entity
@@ -33,7 +33,6 @@ public class Phone {
     @Data
     @AllArgsConstructor
     public static class PhoneParameters {
-
         String newPhoneName;
         String similarPhoneName;
     }

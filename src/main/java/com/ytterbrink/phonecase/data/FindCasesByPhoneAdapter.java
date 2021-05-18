@@ -3,8 +3,10 @@ package com.ytterbrink.phonecase.data;
 import com.ytterbrink.phonecase.data.repositories.PhoneCaseRepository;
 import com.ytterbrink.phonecase.domain.Phone;
 import com.ytterbrink.phonecase.domain.PhoneShape;
-import com.ytterbrink.phonecase.domain.data_ports.FindCasesByPhone;
 import com.ytterbrink.phonecase.domain.PhoneCase;
+
+import com.ytterbrink.phonecase.domain.data_ports.FindCasesByPhone;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

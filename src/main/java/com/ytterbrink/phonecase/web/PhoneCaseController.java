@@ -23,9 +23,9 @@ public class PhoneCaseController {
         this.savePhoneCase = savePhoneCase;
     }
 
-    private AllPhoneCasesFacade allPhoneCases;
-    private FindCasesByPhoneNameFacade findCasesByPhoneName;
-    private CreatePhoneCaseFacade savePhoneCase;
+    private final AllPhoneCasesFacade allPhoneCases;
+    private final FindCasesByPhoneNameFacade findCasesByPhoneName;
+    private final CreatePhoneCaseFacade savePhoneCase;
 
     @PostMapping("/phoneCases")
     @ResponseStatus(HttpStatus.CREATED)

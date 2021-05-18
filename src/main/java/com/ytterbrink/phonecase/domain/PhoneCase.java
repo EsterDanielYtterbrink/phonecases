@@ -34,7 +34,6 @@ public class PhoneCase {
     @Data
     @AllArgsConstructor
     public static class PhoneCaseParameters {
-
         String name;
         String madeFor;
     }
