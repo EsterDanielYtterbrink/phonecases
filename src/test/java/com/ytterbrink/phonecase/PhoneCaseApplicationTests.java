@@ -20,11 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class PhoneCaseApplicationTests {
 
-    // TODO
-    // Make it proper REST
-    // Fix duplication of controller logic
-    // Fix how id is calculated
-
     @Autowired
     private MockMvc mockMvc;
 
