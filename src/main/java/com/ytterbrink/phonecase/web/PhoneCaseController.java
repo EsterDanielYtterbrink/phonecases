@@ -1,5 +1,6 @@
 package com.ytterbrink.phonecase.web;
 
+import com.ytterbrink.phonecase.domain.PhoneCaseParameters;
 import com.ytterbrink.phonecase.domain.web_ports.AllPhoneCasesFacade;
 import com.ytterbrink.phonecase.domain.web_ports.FindCasesByPhoneNameFacade;
 import com.ytterbrink.phonecase.domain.web_ports.CreatePhoneCaseFacade;
@@ -29,7 +30,7 @@ public class PhoneCaseController {
 
     @PostMapping("/phoneCases")
     @ResponseStatus(HttpStatus.CREATED)
-    public PhoneCase newPhoneCase(@RequestBody PhoneCase.PhoneCaseParameters phoneCase){
+    public PhoneCase newPhoneCase(@RequestBody PhoneCaseParameters phoneCase){
        return savePhoneCase.createPhoneCase(phoneCase);
     }
 

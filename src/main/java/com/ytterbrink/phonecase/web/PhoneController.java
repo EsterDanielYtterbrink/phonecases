@@ -1,5 +1,6 @@
 package com.ytterbrink.phonecase.web;
 
+import com.ytterbrink.phonecase.domain.PhoneParameters;
 import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import com.ytterbrink.phonecase.domain.Phone;
@@ -26,7 +27,7 @@ public class PhoneController {
 
     @PostMapping("/phones")
     @ResponseStatus(HttpStatus.CREATED)
-    public Phone createPhone(@RequestBody Phone.PhoneParameters parameters) throws NoMatchingPhoneException {
+    public Phone createPhone(@RequestBody PhoneParameters parameters) throws NoMatchingPhoneException {
         return createPhone.createPhone(parameters);
     }
 

@@ -1,6 +1,7 @@
 package com.ytterbrink.phonecase.domain.services;
 
 import com.ytterbrink.phonecase.domain.PhoneCase;
+import com.ytterbrink.phonecase.domain.PhoneCaseParameters;
 import com.ytterbrink.phonecase.domain.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhoneCase;
 import com.ytterbrink.phonecase.doubles.FindPhoneShapeByPhoneNameMock;
@@ -34,7 +35,7 @@ class SavePhoneCaseServiceTest {
         FindPhoneShapeByPhoneNameMock findPhoneShapeByPhoneNameMock = new FindPhoneShapeByPhoneNameMock(shape, "iPhone5");
         CreatePhoneCaseSpy createPhoneCaseSpy = new CreatePhoneCaseSpy();
         CreatePhoneCaseService service = new CreatePhoneCaseService(createPhoneCaseSpy, findPhoneShapeByPhoneNameMock);
-        PhoneCase.PhoneCaseParameters parameters = new PhoneCase.PhoneCaseParameters("pretty", "iPhone5");
+        PhoneCaseParameters parameters = new PhoneCaseParameters("pretty", "iPhone5");
         PhoneCase phoneCase = service.createPhoneCase(parameters);
         assertThat(phoneCase.getPhoneShape()).isEqualTo(shape);
         assertThat(createPhoneCaseSpy.getPhoneCase()).isNotNull();

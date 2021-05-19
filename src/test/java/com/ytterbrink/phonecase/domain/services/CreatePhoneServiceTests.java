@@ -2,28 +2,21 @@ package com.ytterbrink.phonecase.domain.services;
 
 
 import com.ytterbrink.phonecase.domain.Phone;
+import com.ytterbrink.phonecase.domain.PhoneParameters;
 import com.ytterbrink.phonecase.domain.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhone;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhoneShape;
-import com.ytterbrink.phonecase.domain.services.CreatePhoneService;
-import com.ytterbrink.phonecase.doubles.FindPhoneByNameMock;
 import com.ytterbrink.phonecase.doubles.FindPhoneShapeByPhoneNameMock;
-import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.ManyToOne;
-
-import java.util.Optional;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CreatePhoneServiceTests {
 
-
-    class CreatePhoneSpy implements CreatePhone{
+    static class CreatePhoneSpy implements CreatePhone{
         @Getter
         private Phone phone;
         @Override
@@ -32,7 +25,7 @@ public class CreatePhoneServiceTests {
             return phone;
         }
     }
-    class CreatePhoneShapeSpy implements CreatePhoneShape {
+    static class CreatePhoneShapeSpy implements CreatePhoneShape {
 
         private PhoneShape shape;
         @Override
@@ -49,7 +42,7 @@ public class CreatePhoneServiceTests {
     @Test
     public void savesPhoneAndCreateNewPhoneShape() {
         Phone toSave = new Phone("toSave", null);
-        Phone.PhoneParameters parameters = new Phone.PhoneParameters(toSave.getName(), null);
+        PhoneParameters parameters = new PhoneParameters(toSave.getName(), null);
         CreatePhoneSpy createPhoneSpy = new CreatePhoneSpy();
         FindPhoneShapeByPhoneNameMock findPhoneShapeByPhoneNameMock = new FindPhoneShapeByPhoneNameMock(new PhoneShape(), "dummy");
 
@@ -70,7 +63,7 @@ public class CreatePhoneServiceTests {
             }
         }
         Phone toSave = new Phone("toSave", null);
-        Phone.PhoneParameters parameters = new Phone.PhoneParameters(toSave.getName(), "iPhoneSE");
+        PhoneParameters parameters = new PhoneParameters(toSave.getName(), "iPhoneSE");
         CreatePhoneSpy createPhoneSpy = new CreatePhoneSpy();
         PhoneShape oldShape = new PhoneShape();
         oldShape.setId(UUID.randomUUID());

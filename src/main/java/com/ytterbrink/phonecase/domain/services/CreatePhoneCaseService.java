@@ -1,6 +1,7 @@
 package com.ytterbrink.phonecase.domain.services;
 
 import com.ytterbrink.phonecase.domain.PhoneCase;
+import com.ytterbrink.phonecase.domain.PhoneCaseParameters;
 import com.ytterbrink.phonecase.domain.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhoneCase;
 import com.ytterbrink.phonecase.domain.data_ports.FindPhoneShapeByPhoneName;
@@ -22,7 +23,7 @@ public class CreatePhoneCaseService implements CreatePhoneCaseFacade {
     }
 
     @Override
-    public PhoneCase createPhoneCase(PhoneCase.PhoneCaseParameters phoneCaseParameters) {
+    public PhoneCase createPhoneCase(PhoneCaseParameters phoneCaseParameters) {
         PhoneCase phoneCase = new PhoneCase(phoneCaseParameters.getName());
         PhoneShape shape = findPhoneShapeByPhoneName.findPhoneShapeByPhoneName(phoneCaseParameters.getMadeFor());
         phoneCase.setPhoneShape(shape);

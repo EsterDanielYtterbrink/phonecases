@@ -1,18 +1,15 @@
 package com.ytterbrink.phonecase.domain.services;
 
 import com.ytterbrink.phonecase.domain.Phone;
+import com.ytterbrink.phonecase.domain.PhoneParameters;
 import com.ytterbrink.phonecase.domain.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhone;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhoneShape;
-import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
 import com.ytterbrink.phonecase.domain.data_ports.FindPhoneShapeByPhoneName;
 import com.ytterbrink.phonecase.domain.web_ports.CreatePhoneFacade;
 
-import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CreatePhoneService implements CreatePhoneFacade {
@@ -29,7 +26,7 @@ public class CreatePhoneService implements CreatePhoneFacade {
     }
 
     @Override
-    public Phone createPhone(Phone.PhoneParameters parameters) {
+    public Phone createPhone(PhoneParameters parameters) {
         String phoneName = parameters.getNewPhoneName();
         PhoneShape phoneShape = parameters.getSimilarPhoneName()
                 .map(findPhoneShapeByPhoneName::findPhoneShapeByPhoneName)
