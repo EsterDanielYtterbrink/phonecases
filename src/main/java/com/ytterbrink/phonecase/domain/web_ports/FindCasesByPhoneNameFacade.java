@@ -7,6 +7,7 @@ import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import java.util.List;
 
 public interface FindCasesByPhoneNameFacade {
-    List<PhoneCase> findCaseByPhone(String phoneName) throws NoMatchingPhoneException, NothingToSeeYetException;
+    List<PhoneCase> findCaseByPhone(String phoneName)
+            throws NoMatchingPhoneException, NothingToSeeYetException;
 }
 

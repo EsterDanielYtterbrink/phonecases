@@ -14,12 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreatePhoneService implements CreatePhoneFacade {
 
-    CreatePhone createPhone;
-    FindPhoneShapeByPhoneName findPhoneShapeByPhoneName;
-    CreatePhoneShape createPhoneShape;
+    private final CreatePhone createPhone;
+    private final FindPhoneShapeByPhoneName findPhoneShapeByPhoneName;
+    private final CreatePhoneShape createPhoneShape;
 
     @Autowired
-    public CreatePhoneService(CreatePhone createPhone, FindPhoneShapeByPhoneName  findPhoneShapeByPhoneName, CreatePhoneShape createPhoneShape) {
+    public CreatePhoneService(CreatePhone createPhone,
+                              FindPhoneShapeByPhoneName  findPhoneShapeByPhoneName,
+                              CreatePhoneShape createPhoneShape) {
         this.createPhone = createPhone;
         this.findPhoneShapeByPhoneName = findPhoneShapeByPhoneName;
         this.createPhoneShape = createPhoneShape;
@@ -27,8 +29,8 @@ public class CreatePhoneService implements CreatePhoneFacade {
 
     @Override
     public Phone createPhone(PhoneParameters parameters) {
-        String phoneName = parameters.getNewPhoneName();
-        PhoneShape phoneShape = parameters.getSimilarPhoneName()
+        final String phoneName = parameters.getNewPhoneName();
+        final PhoneShape phoneShape = parameters.getSimilarPhoneName()
                 .map(findPhoneShapeByPhoneName::findPhoneShapeByPhoneName)
                 .orElseGet(() -> createPhoneShape.createPhoneShape(new PhoneShape()));
         return createPhone.createPhone(new Phone(phoneName, phoneShape));

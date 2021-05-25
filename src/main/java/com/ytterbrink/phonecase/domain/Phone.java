@@ -28,8 +28,13 @@ public class Phone {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Getter @Setter private String brand;
-    @Getter @Setter private String name;
+    @Getter
+    @Setter
+    private String brand;
+
+    @Getter
+    @Setter
+    private String name;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JsonIgnore

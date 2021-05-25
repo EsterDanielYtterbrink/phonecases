@@ -16,22 +16,27 @@ import java.util.List;
 
 
 @Component
-public class FindCasesByPhoneNameService implements FindCasesByPhoneNameFacade {
+public class FindCasesByPhoneNameService
+        implements FindCasesByPhoneNameFacade {
 
 
     private final FindPhoneByName phoneFinder;
     private final FindCasesByPhone casesFinder;
 
     @Autowired
-    public FindCasesByPhoneNameService(FindPhoneByName phoneFinder, FindCasesByPhone casesFinder) {
+    public FindCasesByPhoneNameService(
+            FindPhoneByName phoneFinder,
+            FindCasesByPhone casesFinder) {
         this.phoneFinder = phoneFinder;
         this.casesFinder= casesFinder;
     }
 
     @Override
-    public List<PhoneCase> findCaseByPhone(String phoneName) throws NoMatchingPhoneException, NothingToSeeYetException {
-        Phone phone  = phoneFinder.findPhoneByName(phoneName).orElseThrow(NoMatchingPhoneException::new);
-        List<PhoneCase> cases = casesFinder.findPhoneCaseByPhone(phone);
+    public List<PhoneCase> findCaseByPhone(String phoneName)
+            throws NoMatchingPhoneException, NothingToSeeYetException {
+        final Phone phone  = phoneFinder.findPhoneByName(phoneName).
+                orElseThrow(NoMatchingPhoneException::new);
+        final List<PhoneCase> cases = casesFinder.findPhoneCaseByPhone(phone);
         if(cases == null || cases.isEmpty()){
             throw new NothingToSeeYetException();
         }

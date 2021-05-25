@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreatePhoneCaseAdapter implements CreatePhoneCase {
 
-   @Autowired
+    private final PhoneCaseRepository repository;
+
+    @Autowired
     public CreatePhoneCaseAdapter(PhoneCaseRepository repository) {
         this.repository = repository;
     }
-
-    private final PhoneCaseRepository repository;
 
     @Override
     public PhoneCase createPhoneCase(PhoneCase phoneCase) {

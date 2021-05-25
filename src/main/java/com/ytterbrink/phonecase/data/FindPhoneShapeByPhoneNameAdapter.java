@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FindPhoneShapeByPhoneNameAdapter  implements FindPhoneShapeByPhoneName {
+public class FindPhoneShapeByPhoneNameAdapter implements FindPhoneShapeByPhoneName {
 
     private final PhoneRepository repository;
 

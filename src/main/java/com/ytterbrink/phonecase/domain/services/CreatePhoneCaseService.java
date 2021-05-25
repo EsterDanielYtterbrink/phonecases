@@ -13,19 +13,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreatePhoneCaseService implements CreatePhoneCaseFacade {
 
-    final CreatePhoneCase createPhoneCase;
-    final FindPhoneShapeByPhoneName findPhoneShapeByPhoneName;
+    private final CreatePhoneCase createPhoneCase;
+    private final FindPhoneShapeByPhoneName findPhoneShapeByPhoneName;
 
     @Autowired
-    public CreatePhoneCaseService(CreatePhoneCase createPhoneCase, FindPhoneShapeByPhoneName findPhoneShapeByPhoneName) {
+    public CreatePhoneCaseService(
+            CreatePhoneCase createPhoneCase,
+            FindPhoneShapeByPhoneName findPhoneShapeByPhoneName) {
         this.createPhoneCase = createPhoneCase;
         this.findPhoneShapeByPhoneName = findPhoneShapeByPhoneName;
     }
 
     @Override
     public PhoneCase createPhoneCase(PhoneCaseParameters phoneCaseParameters) {
-        PhoneCase phoneCase = new PhoneCase(phoneCaseParameters.getName());
-        PhoneShape shape = findPhoneShapeByPhoneName.findPhoneShapeByPhoneName(phoneCaseParameters.getMadeFor());
+        final PhoneCase phoneCase = new PhoneCase(phoneCaseParameters.getName());
+        final String madeFor = phoneCaseParameters.getMadeFor();
+        final PhoneShape shape = findPhoneShapeByPhoneName.findPhoneShapeByPhoneName(madeFor);
         phoneCase.setPhoneShape(shape);
         return createPhoneCase.createPhoneCase(phoneCase);
     }

@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class AllPhoneCasesAdapter implements AllPhoneCases {
 
-    PhoneCaseRepository repository;
+    private final PhoneCaseRepository repository;
 
     @Autowired
     public AllPhoneCasesAdapter(PhoneCaseRepository repository) {

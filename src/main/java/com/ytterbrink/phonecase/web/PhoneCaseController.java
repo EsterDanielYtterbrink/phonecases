@@ -17,17 +17,20 @@ import java.util.List;
 @RestController
 public class PhoneCaseController {
 
-    @Autowired
-    public PhoneCaseController(AllPhoneCasesFacade allPhoneCases, FindCasesByPhoneNameFacade findCasesByPhoneName, CreatePhoneCaseFacade savePhoneCase) {
-        this.allPhoneCases = allPhoneCases;
-        this.findCasesByPhoneName = findCasesByPhoneName;
-        this.savePhoneCase = savePhoneCase;
-    }
-
     private final AllPhoneCasesFacade allPhoneCases;
     private final FindCasesByPhoneNameFacade findCasesByPhoneName;
     private final CreatePhoneCaseFacade savePhoneCase;
 
+    @Autowired
+    public PhoneCaseController(
+            AllPhoneCasesFacade allPhoneCases,
+            FindCasesByPhoneNameFacade findCasesByPhoneName,
+            CreatePhoneCaseFacade savePhoneCase) {
+        this.allPhoneCases = allPhoneCases;
+        this.findCasesByPhoneName = findCasesByPhoneName;
+        this.savePhoneCase = savePhoneCase;
+    }
+    
     @PostMapping("/phoneCases")
     @ResponseStatus(HttpStatus.CREATED)
     public PhoneCase newPhoneCase(@RequestBody PhoneCaseParameters phoneCase){
@@ -35,12 +38,14 @@ public class PhoneCaseController {
     }
 
     @GetMapping("/phoneCases")
-    public List<PhoneCase> allPhoneCases() throws NothingToSeeYetException{
+    public List<PhoneCase> allPhoneCases()
+            throws NothingToSeeYetException{
         return allPhoneCases.allPhoneCases();
     }
 
     @GetMapping("/phoneCases/{phoneName}")
-    public List<PhoneCase> phoneCasesForPhone(@PathVariable String phoneName) throws NothingToSeeYetException, NoMatchingPhoneException {
+    public List<PhoneCase> phoneCasesForPhone(@PathVariable String phoneName)
+            throws NothingToSeeYetException, NoMatchingPhoneException {
         return findCasesByPhoneName.findCaseByPhone(phoneName);
     }
 

@@ -5,5 +5,6 @@ import com.ytterbrink.phonecase.domain.PhoneParameters;
 import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 
 public interface CreatePhoneFacade {
-    Phone createPhone(PhoneParameters parameters) throws NoMatchingPhoneException;
+    Phone createPhone(PhoneParameters parameters)
+            throws NoMatchingPhoneException;
 }

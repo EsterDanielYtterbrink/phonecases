@@ -21,7 +21,7 @@ public class AllPhoneCasesService implements AllPhoneCasesFacade {
 
     @Override
     public List<PhoneCase> allPhoneCases() throws NothingToSeeYetException {
-        List<PhoneCase> allCases = allPhoneCases.allPhoneCases();
+        final List<PhoneCase> allCases = allPhoneCases.allPhoneCases();
         if(allCases == null || allCases.isEmpty()){
             throw new NothingToSeeYetException();
         }

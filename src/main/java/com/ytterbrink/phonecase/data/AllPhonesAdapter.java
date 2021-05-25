@@ -12,12 +12,12 @@ import java.util.List;
 @Component
 public class AllPhonesAdapter implements AllPhones {
 
+    private final PhoneRepository repository;
+
     @Autowired
     public AllPhonesAdapter(PhoneRepository repository) {
         this.repository = repository;
     }
-
-    PhoneRepository repository;
 
     @Override
     public List<Phone> allPhones() {

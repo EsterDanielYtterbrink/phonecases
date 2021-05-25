@@ -16,18 +16,21 @@ import java.util.List;
 @RestController
 public class PhoneController {
 
-    AllPhonesFacade allPhones;
-    CreatePhoneFacade createPhone;
+    private final AllPhonesFacade allPhones;
+    private final CreatePhoneFacade createPhone;
 
     @Autowired
-    public PhoneController(AllPhonesFacade allPhones, CreatePhoneFacade createPhone) {
+    public PhoneController(
+            AllPhonesFacade allPhones,
+            CreatePhoneFacade createPhone) {
         this.createPhone = createPhone;
         this.allPhones = allPhones;
     }
 
     @PostMapping("/phones")
     @ResponseStatus(HttpStatus.CREATED)
-    public Phone createPhone(@RequestBody PhoneParameters parameters) throws NoMatchingPhoneException {
+    public Phone createPhone(@RequestBody PhoneParameters parameters)
+            throws NoMatchingPhoneException {
         return createPhone.createPhone(parameters);
     }
 

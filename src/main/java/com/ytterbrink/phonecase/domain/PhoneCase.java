@@ -15,20 +15,28 @@ import javax.persistence.ManyToOne;
 @Entity
 public class PhoneCase {
 
+  
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
+    @Setter
+    private Long id;
+
+    @Getter
+    @Setter
+    private String name;
+
+    @ManyToOne()
+    @JsonIgnore
+    @Getter
+    @Setter
+    private PhoneShape phoneShape;
+
     protected PhoneCase(){}
     public PhoneCase(String name) {
         this.name = name;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter @Setter private Long id;
-
-    @Getter @Setter private String name;
-
-    @ManyToOne()
-    @JsonIgnore
-    @Getter @Setter private PhoneShape phoneShape;
 
     @Override
     public String toString() {

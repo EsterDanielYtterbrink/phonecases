@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class PhoneCaseParameters {
-    String name;
-    String madeFor;
+    private String name;
+    private String madeFor;
 }
