@@ -1,7 +1,7 @@
 package com.ytterbrink.phonecase.data;
 
 import com.ytterbrink.phonecase.data.repositories.PhoneRepository;
-import com.ytterbrink.phonecase.domain.Phone;
+import com.ytterbrink.phonecase.domain.data.Phone;
 import com.ytterbrink.phonecase.domain.data_ports.AllPhones;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.ytterbrink.phonecase.data;
 
-import com.ytterbrink.phonecase.domain.Phone;
+import com.ytterbrink.phonecase.domain.data.Phone;
 import com.ytterbrink.phonecase.data.repositories.PhoneRepository;
-import com.ytterbrink.phonecase.domain.PhoneShape;
+import com.ytterbrink.phonecase.domain.data.PhoneShape;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

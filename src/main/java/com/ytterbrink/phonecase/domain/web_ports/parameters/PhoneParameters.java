@@ -1,4 +1,4 @@
-package com.ytterbrink.phonecase.domain;
+package com.ytterbrink.phonecase.domain.web_ports.parameters;
 
 import lombok.Data;
 

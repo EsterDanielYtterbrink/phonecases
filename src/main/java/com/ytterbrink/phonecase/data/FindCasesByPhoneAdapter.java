@@ -1,9 +1,8 @@
 package com.ytterbrink.phonecase.data;
 
 import com.ytterbrink.phonecase.data.repositories.PhoneCaseRepository;
-import com.ytterbrink.phonecase.domain.Phone;
-import com.ytterbrink.phonecase.domain.PhoneShape;
-import com.ytterbrink.phonecase.domain.PhoneCase;
+import com.ytterbrink.phonecase.domain.data.Phone;
+import com.ytterbrink.phonecase.domain.data.PhoneCase;
 
 import com.ytterbrink.phonecase.domain.data_ports.FindCasesByPhone;
 

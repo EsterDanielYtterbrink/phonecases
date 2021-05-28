@@ -1,12 +1,12 @@
 package com.ytterbrink.phonecase.web;
 
-import com.ytterbrink.phonecase.domain.PhoneCaseParameters;
+import com.ytterbrink.phonecase.domain.web_ports.parameters.PhoneCaseParameters;
 import com.ytterbrink.phonecase.domain.web_ports.AllPhoneCasesFacade;
 import com.ytterbrink.phonecase.domain.web_ports.FindCasesByPhoneNameFacade;
 import com.ytterbrink.phonecase.domain.web_ports.CreatePhoneCaseFacade;
 import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
-import com.ytterbrink.phonecase.domain.PhoneCase;
+import com.ytterbrink.phonecase.domain.data.PhoneCase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

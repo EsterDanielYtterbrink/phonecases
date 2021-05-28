@@ -1,7 +1,7 @@
 package com.ytterbrink.phonecase.data;
 
-import com.ytterbrink.phonecase.domain.PhoneShape;
-import com.ytterbrink.phonecase.domain.PhoneCase;
+import com.ytterbrink.phonecase.domain.data.PhoneShape;
+import com.ytterbrink.phonecase.domain.data.PhoneCase;
 import com.ytterbrink.phonecase.data.repositories.PhoneCaseRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

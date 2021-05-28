@@ -1,9 +1,9 @@
 package com.ytterbrink.phonecase.domain.services;
 
 
-import com.ytterbrink.phonecase.domain.Phone;
-import com.ytterbrink.phonecase.domain.PhoneParameters;
-import com.ytterbrink.phonecase.domain.PhoneShape;
+import com.ytterbrink.phonecase.domain.data.Phone;
+import com.ytterbrink.phonecase.domain.web_ports.parameters.PhoneParameters;
+import com.ytterbrink.phonecase.domain.data.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhone;
 import com.ytterbrink.phonecase.domain.data_ports.CreatePhoneShape;
 import com.ytterbrink.phonecase.doubles.FindPhoneShapeByPhoneNameMock;

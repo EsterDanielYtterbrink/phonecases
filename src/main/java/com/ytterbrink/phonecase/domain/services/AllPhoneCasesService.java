@@ -1,6 +1,6 @@
 package com.ytterbrink.phonecase.domain.services;
 
-import com.ytterbrink.phonecase.domain.PhoneCase;
+import com.ytterbrink.phonecase.domain.data.PhoneCase;
 import com.ytterbrink.phonecase.domain.data_ports.AllPhoneCases;
 import com.ytterbrink.phonecase.domain.web_ports.AllPhoneCasesFacade;
 

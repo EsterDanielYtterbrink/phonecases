@@ -1,6 +1,6 @@
 package com.ytterbrink.phonecase.domain.services;
 
-import com.ytterbrink.phonecase.domain.Phone;
+import com.ytterbrink.phonecase.domain.data.Phone;
 import com.ytterbrink.phonecase.domain.data_ports.AllPhones;
 import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.junit.jupiter.api.Assertions.*;
 
 class AllPhonesServiceTest {
 

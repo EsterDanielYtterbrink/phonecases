@@ -1,4 +1,4 @@
-package com.ytterbrink.phonecase.domain;
+package com.ytterbrink.phonecase.domain.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

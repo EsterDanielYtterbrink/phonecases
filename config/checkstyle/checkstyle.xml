@@ -19,6 +19,8 @@
         <module name="AvoidStarImport">
             <property name="excludes" value="org.springframework.web.bind.annotation"/>
         </module>
+        <module name="AvoidStaticImport"/>
+
         <module name="ConstantName"/>
         <module name="CovariantEquals"/>
         <module name="DeclarationOrder"/>
@@ -36,6 +38,9 @@
         <module name="HiddenField">
             <property name="tokens" value="VARIABLE_DEF"/>
         </module>
+        <module name="ImportControl">
+            <property name="file" value="${config_loc}/import-control.xml"/>
+        </module>
         <module name="IllegalCatch"/>
         <module name="IllegalInstantiation"/>
         <module name="IllegalThrows"/>
@@ -45,28 +50,47 @@
         <module name="InterfaceIsType"/>
         <module name="LeftCurly"/>
         <module name="MagicNumber"/>
-        <module name="NeedBraces"/>
+        <module name="MissingDeprecated"/>
+        <module name="MissingOverride"/>
         <module name="MissingSwitchDefault"/>
+        <module name="MutableException"/>
         <module name="ModifiedControlVariable"/>
         <module name="MultipleStringLiterals"/>
         <module name="MultipleVariableDeclarations"/>
+        <module name="NeedBraces"/>
         <module name="NestedForDepth"/>
         <module name="NestedIfDepth"/>
         <module name="NestedTryDepth"/>
-        <module name="OneStatementPerLine"/>
 
+
+        <module name="NoClone"/>
+        <module name="NoArrayTrailingComma"/>
+        <module name="NoEnumTrailingComma"/>
+        <module name="NoFinalizer"/>
+        <module name="OneStatementPerLine"/>
+        <module name="OneTopLevelClass"/>
         <module name="OperatorWrap">
             <property name="option" value="nl"/>
             <property name="tokens" value="METHOD_REF"/>
         </module>
-        <module name="MissingDeprecated"/>
-        <module name="MissingOverride"/>
-        <module name="MutableException"/>
-        <module name="OneTopLevelClass"/>
+        <module name="OverloadMethodsDeclarationOrder"/>
+        <module name="PackageDeclaration"/>
+        <module name="ParameterAssignment"/>
+        <module name="RequireThis"/>
         <module name="RightCurly"/>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+        <module name="StringLiteralEquality"/>
         <module name="ThrowsCount">
             <property name="max" value="2"/>
         </module>
+        <module name="UnnecessaryParentheses"/>
+        <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
+        <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
+        <module name="UnnecessarySemicolonInEnumeration"/>
+        <module name="UnnecessarySemicolonInTryWithResources"/>
+        <module name="VariableDeclarationUsageDistance"/>
+
         <module name="VisibilityModifier"/>
 
 

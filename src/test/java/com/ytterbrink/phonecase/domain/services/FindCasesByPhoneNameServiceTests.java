@@ -1,7 +1,8 @@
 package com.ytterbrink.phonecase.domain.services;
 
-import com.ytterbrink.phonecase.domain.services.FindCasesByPhoneNameService;
-import com.ytterbrink.phonecase.domain.*;
+import com.ytterbrink.phonecase.domain.data.Phone;
+import com.ytterbrink.phonecase.domain.data.PhoneCase;
+import com.ytterbrink.phonecase.domain.data.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
 import com.ytterbrink.phonecase.domain.data_ports.FindCasesByPhone;
 import com.ytterbrink.phonecase.doubles.FindPhoneByNameMock;

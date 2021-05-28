@@ -1,6 +1,6 @@
 package com.ytterbrink.phonecase.doubles;
 
-import com.ytterbrink.phonecase.domain.Phone;
+import com.ytterbrink.phonecase.domain.data.Phone;
 import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
 
 import java.util.Optional;

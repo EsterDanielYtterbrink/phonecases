@@ -1,8 +1,6 @@
-package com.ytterbrink.phonecase.domain;
+package com.ytterbrink.phonecase.domain.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

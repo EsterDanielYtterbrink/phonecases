@@ -1,6 +1,6 @@
 package com.ytterbrink.phonecase.doubles;
 
-import com.ytterbrink.phonecase.domain.PhoneShape;
+import com.ytterbrink.phonecase.domain.data.PhoneShape;
 import com.ytterbrink.phonecase.domain.data_ports.FindPhoneShapeByPhoneName;
 import lombok.Getter;
 

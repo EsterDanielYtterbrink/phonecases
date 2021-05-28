@@ -1,9 +1,9 @@
 package com.ytterbrink.phonecase.web;
 
-import com.ytterbrink.phonecase.domain.PhoneParameters;
+import com.ytterbrink.phonecase.domain.data.Phone;
+import com.ytterbrink.phonecase.domain.web_ports.parameters.PhoneParameters;
 import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
-import com.ytterbrink.phonecase.domain.Phone;
 import com.ytterbrink.phonecase.domain.web_ports.CreatePhoneFacade;
 import com.ytterbrink.phonecase.domain.web_ports.AllPhonesFacade;
 

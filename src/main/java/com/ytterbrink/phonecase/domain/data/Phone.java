@@ -1,7 +1,6 @@
-package com.ytterbrink.phonecase.domain;
+package com.ytterbrink.phonecase.domain.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Entity
