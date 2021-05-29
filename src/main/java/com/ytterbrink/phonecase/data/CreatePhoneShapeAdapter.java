@@ -18,7 +18,7 @@ public class CreatePhoneShapeAdapter implements CreatePhoneShape {
     }
 
     @Override
-    public PhoneShape createPhoneShape(PhoneShape phoneShape) {
+    public PhoneShape createPhoneShape(PhoneShapeEntity phoneShape) {
         return repository.save(phoneShape);
     }
 }

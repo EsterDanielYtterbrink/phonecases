@@ -1,5 +1,8 @@
 package com.ytterbrink.phonecase.domain.services;
 
+import com.ytterbrink.phonecase.data.PhoneCaseEntity;
+import com.ytterbrink.phonecase.data.PhoneEntity;
+import com.ytterbrink.phonecase.data.PhoneShapeEntity;
 import com.ytterbrink.phonecase.domain.data.Phone;
 import com.ytterbrink.phonecase.domain.data.PhoneCase;
 import com.ytterbrink.phonecase.domain.data.PhoneShape;
@@ -41,8 +44,8 @@ public class FindCasesByPhoneNameServiceTests {
 
     @Test
     public void canGetAllCasesForAPhone() throws NoMatchingPhoneException, NothingToSeeYetException {
-        Phone aPhone = new Phone("iPhone5", new PhoneShape());
-        List<PhoneCase> cases = Arrays.asList(new PhoneCase("fancy"), new PhoneCase("plain"));
+        Phone aPhone = new PhoneEntity("iPhone5", new PhoneShapeEntity());
+        List<PhoneCase> cases = Arrays.asList(new PhoneCaseEntity("fancy"), new PhoneCaseEntity("plain"));
         FindPhoneCasesByPhoneMock casesFinder = new FindPhoneCasesByPhoneMock(aPhone, cases);
         FindPhoneByName phoneFinder = new FindPhoneByNameMock(aPhone);
 
@@ -52,7 +55,7 @@ public class FindCasesByPhoneNameServiceTests {
 
     @Test
     public void canDealWithNoPhone(){
-        Phone aPhone = new Phone("iPhone5", new PhoneShape());
+        Phone aPhone = new PhoneEntity("iPhone5", new PhoneShapeEntity());
         FindPhoneCasesByPhoneMock casesFinder = new FindPhoneCasesByPhoneMock(aPhone, null);
         FindPhoneByName phoneFinder = new FindPhoneByNameMock(null);
         FindCasesByPhoneNameService service = new FindCasesByPhoneNameService(phoneFinder, casesFinder);
@@ -62,7 +65,7 @@ public class FindCasesByPhoneNameServiceTests {
 
     @Test
     public void canDealWithNoFoundCases(){
-        Phone aPhone = new Phone("iPhone5", new PhoneShape());
+        Phone aPhone = new PhoneEntity("iPhone5", new PhoneShapeEntity());
         FindPhoneCasesByPhoneMock casesFinder = new FindPhoneCasesByPhoneMock(aPhone, new LinkedList<>());
         FindPhoneByName phoneFinder = new FindPhoneByNameMock(aPhone);
         FindCasesByPhoneNameService service = new FindCasesByPhoneNameService(phoneFinder, casesFinder);

@@ -20,9 +20,9 @@ public class PhoneDataTests {
 
    @Test
    public void shouldFindPhoneByName(){
-       PhoneShape shape = new PhoneShape();
+       PhoneShape shape = new PhoneShapeEntity();
        testEntityManager.persist(shape);
-       Phone iPhone = new Phone("big", shape);
+       Phone iPhone = new PhoneEntity("big", shape);
        testEntityManager.persist(iPhone);
        assertThat(repository.findOneByName(iPhone.getName())).isEqualTo(iPhone);
    }

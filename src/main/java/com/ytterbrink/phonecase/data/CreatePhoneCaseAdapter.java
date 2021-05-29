@@ -19,6 +19,6 @@ public class CreatePhoneCaseAdapter implements CreatePhoneCase {
 
     @Override
     public PhoneCase createPhoneCase(PhoneCase phoneCase) {
-        return repository.save(phoneCase);
+        return repository.save(PhoneCaseEntity.entityFromInterface(phoneCase));
     }
 }

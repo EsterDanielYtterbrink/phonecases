@@ -21,6 +21,6 @@ public class AllPhoneCasesAdapter implements AllPhoneCases {
 
     @Override
     public List<PhoneCase> allPhoneCases() {
-        return repository.findAll();
+        return (List)repository.findAll();
     }
 }

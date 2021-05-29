@@ -1,6 +1,8 @@
 package com.ytterbrink.phonecase.domain.services;
 
 
+import com.ytterbrink.phonecase.data.PhoneEntity;
+import com.ytterbrink.phonecase.data.PhoneShapeEntity;
 import com.ytterbrink.phonecase.domain.data.Phone;
 import com.ytterbrink.phonecase.domain.web_ports.parameters.PhoneParameters;
 import com.ytterbrink.phonecase.domain.data.PhoneShape;
@@ -20,7 +22,7 @@ public class CreatePhoneServiceTests {
         @Getter
         private Phone phone;
         @Override
-        public Phone createPhone(Phone phone) {
+        public Phone createPhone(PhoneEntity phone) {
             this.phone = phone;
             return phone;
         }
@@ -29,7 +31,7 @@ public class CreatePhoneServiceTests {
 
         private PhoneShape shape;
         @Override
-        public PhoneShape createPhoneShape(PhoneShape phoneShape) {
+        public PhoneShape createPhoneShape(PhoneShapeEntity phoneShape) {
             phoneShape.setId(UUID.randomUUID());
             this.shape = phoneShape;
             return phoneShape;
@@ -41,10 +43,10 @@ public class CreatePhoneServiceTests {
 
     @Test
     public void savesPhoneAndCreateNewPhoneShape() {
-        Phone toSave = new Phone("toSave", null);
+        Phone toSave = new PhoneEntity("toSave", null);
         PhoneParameters parameters = new PhoneParameters(toSave.getName(), null);
         CreatePhoneSpy createPhoneSpy = new CreatePhoneSpy();
-        FindPhoneShapeByPhoneNameMock findPhoneShapeByPhoneNameMock = new FindPhoneShapeByPhoneNameMock(new PhoneShape(), "dummy");
+        FindPhoneShapeByPhoneNameMock findPhoneShapeByPhoneNameMock = new FindPhoneShapeByPhoneNameMock(new PhoneShapeEntity(), "dummy");
 
         CreatePhoneShapeSpy createPhoneShapeSpy = new CreatePhoneShapeSpy();
         CreatePhoneService service = new CreatePhoneService(createPhoneSpy,findPhoneShapeByPhoneNameMock, createPhoneShapeSpy);
@@ -58,14 +60,14 @@ public class CreatePhoneServiceTests {
         class CreatePhoneShapeZombie implements CreatePhoneShape {
 
             @Override
-            public PhoneShape createPhoneShape(PhoneShape phoneShape) {
+            public PhoneShape createPhoneShape(PhoneShapeEntity phoneShape) {
                throw new RuntimeException();
             }
         }
-        Phone toSave = new Phone("toSave", null);
+        Phone toSave = new PhoneEntity("toSave", null);
         PhoneParameters parameters = new PhoneParameters(toSave.getName(), "iPhoneSE");
         CreatePhoneSpy createPhoneSpy = new CreatePhoneSpy();
-        PhoneShape oldShape = new PhoneShape();
+        PhoneShapeEntity oldShape = new PhoneShapeEntity();
         oldShape.setId(UUID.randomUUID());
         FindPhoneShapeByPhoneNameMock findPhoneShapeByPhoneNameMock = new FindPhoneShapeByPhoneNameMock(oldShape, "iPhoneSE");
         CreatePhoneShapeZombie createPhoneShapeZombie = new CreatePhoneShapeZombie();

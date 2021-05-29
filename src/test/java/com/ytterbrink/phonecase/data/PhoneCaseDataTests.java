@@ -22,10 +22,10 @@ public class PhoneCaseDataTests {
 
    @Test
    public void shouldFindCaseByShape(){
-       PhoneShape small = new PhoneShape();
-       PhoneShape big = new PhoneShape();
-       PhoneCase phoneCaseSmall = new PhoneCase("small");
-       PhoneCase phoneCaseBig = new PhoneCase("big");
+       PhoneShape small = new PhoneShapeEntity();
+       PhoneShape big = new PhoneShapeEntity();
+       PhoneCase phoneCaseSmall = new PhoneCaseEntity("small");
+       PhoneCase phoneCaseBig = new PhoneCaseEntity("big");
        testEntityManager.persist(small);
        testEntityManager.persist(big);
        phoneCaseBig.setPhoneShape(big);

@@ -18,7 +18,7 @@ public class CreatePhoneAdapter implements CreatePhone {
     }
 
     @Override
-    public Phone createPhone(Phone phone) {
+    public Phone createPhone(PhoneEntity phone) {
         return repository.save(phone);
     }
 }

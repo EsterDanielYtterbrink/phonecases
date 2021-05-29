@@ -16,19 +16,21 @@
         <allow pkg="com.ytterbrink.phonecase.data.repositories"/>
         <allow pkg="com.ytterbrink.phonecase.domain.data_ports"/>
         <allow pkg="com.ytterbrink.phonecase.domain.data"/>
+        <allow pkg="lombok"/>
+        <allow pkg="javax.persistence"/>
+        <allow pkg="java.util"/>
+        <allow class="com.fasterxml.jackson.annotation.JsonIgnore"/>
         <subpackage name="repositories">
+            <allow pkg="com.ytterbrink.phonecase.data"/>
             <allow class="org.springframework.data.jpa.repository.JpaRepository"/>
         </subpackage>
     </subpackage>
     <subpackage name="domain">
         <allow pkg="com.ytterbrink.phonecase.domain.data"/>
-        <subpackage name="data">
-            <allow pkg="lombok"/>
-            <allow pkg="javax.persistence"/>
-            <allow pkg="java.util"/>
-            <allow class="com.fasterxml.jackson.annotation.JsonIgnore"/>
-        </subpackage>
         <subpackage name="data_ports">
+            <allow class="com.ytterbrink.phonecase.data.PhoneEntity"/>
+            <allow class="com.ytterbrink.phonecase.data.PhoneCaseEntity"/>
+            <allow class="com.ytterbrink.phonecase.data.PhoneShapeEntity"/>
             <allow class="java.util.Optional"/>
         </subpackage>
         <subpackage name="web_ports">
@@ -44,6 +46,7 @@
             <allow pkg="com.ytterbrink.phonecase.exceptions"/>
             <allow pkg="com.ytterbrink.phonecase.domain.data_ports"/>
             <allow pkg="com.ytterbrink.phonecase.domain.web_ports"/>
+            <allow pkg="com.ytterbrink.phonecase.data"/>
         </subpackage>
     </subpackage>
     <subpackage name="exceptions">

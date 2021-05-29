@@ -1,5 +1,7 @@
 package com.ytterbrink.phonecase.domain.services;
 
+import com.ytterbrink.phonecase.data.PhoneEntity;
+import com.ytterbrink.phonecase.data.PhoneShapeEntity;
 import com.ytterbrink.phonecase.domain.data.Phone;
 import com.ytterbrink.phonecase.domain.web_ports.parameters.PhoneParameters;
 import com.ytterbrink.phonecase.domain.data.PhoneShape;
@@ -32,8 +34,8 @@ public class CreatePhoneService implements CreatePhoneFacade {
         final String phoneName = parameters.getNewPhoneName();
         final PhoneShape phoneShape = parameters.getSimilarPhoneName()
                 .map(findPhoneShapeByPhoneName::findPhoneShapeByPhoneName)
-                .orElseGet(() -> createPhoneShape.createPhoneShape(new PhoneShape()));
-        return createPhone.createPhone(new Phone(phoneName, phoneShape));
+                .orElseGet(() -> createPhoneShape.createPhoneShape(new PhoneShapeEntity()));
+        return createPhone.createPhone(new PhoneEntity(phoneName, phoneShape));
     }
 
 }

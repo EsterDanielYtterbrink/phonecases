@@ -1,5 +1,6 @@
 package com.ytterbrink.phonecase.domain.services;
 
+import com.ytterbrink.phonecase.data.PhoneShapeEntity;
 import com.ytterbrink.phonecase.domain.data.PhoneCase;
 import com.ytterbrink.phonecase.domain.web_ports.parameters.PhoneCaseParameters;
 import com.ytterbrink.phonecase.domain.data.PhoneShape;
@@ -30,7 +31,7 @@ class SavePhoneCaseServiceTest {
 
     @Test
     void savePhoneCaseWhenEverythingWorks() {
-        PhoneShape shape = new PhoneShape();
+        PhoneShapeEntity shape = new PhoneShapeEntity();
         shape.setId(UUID.randomUUID());
         FindPhoneShapeByPhoneNameMock findPhoneShapeByPhoneNameMock = new FindPhoneShapeByPhoneNameMock(shape, "iPhone5");
         CreatePhoneCaseSpy createPhoneCaseSpy = new CreatePhoneCaseSpy();
