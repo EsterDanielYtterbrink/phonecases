@@ -1,15 +1,14 @@
 package com.ytterbrink.phonecase.data;
 
-import com.ytterbrink.phonecase.data.repositories.PhoneCaseRepository;
-import com.ytterbrink.phonecase.domain.data.Phone;
-import com.ytterbrink.phonecase.domain.data.PhoneCase;
-
-import com.ytterbrink.phonecase.domain.data_ports.FindCasesByPhone;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import com.ytterbrink.phonecase.data.repositories.PhoneCaseRepository;
+import com.ytterbrink.phonecase.domain.data.Phone;
+import com.ytterbrink.phonecase.domain.data.PhoneCase;
+import com.ytterbrink.phonecase.domain.data_ports.FindCasesByPhone;
 
 @Component
 public class FindCasesByPhoneAdapter implements FindCasesByPhone {

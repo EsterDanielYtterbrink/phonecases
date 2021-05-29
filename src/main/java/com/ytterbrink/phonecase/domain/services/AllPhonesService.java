@@ -1,14 +1,15 @@
 package com.ytterbrink.phonecase.domain.services;
 
-import com.ytterbrink.phonecase.domain.data.Phone;
-import com.ytterbrink.phonecase.domain.data_ports.AllPhones;
-import com.ytterbrink.phonecase.domain.web_ports.AllPhonesFacade;
+import java.util.List;
 
-import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.ytterbrink.phonecase.domain.data.Phone;
+import com.ytterbrink.phonecase.domain.data_ports.AllPhones;
+import com.ytterbrink.phonecase.domain.web_ports.AllPhonesFacade;
+import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
+
 @Service
 public class AllPhonesService  implements AllPhonesFacade {
 
@@ -22,7 +23,7 @@ public class AllPhonesService  implements AllPhonesFacade {
     @Override
     public List<Phone> allPhones() throws NothingToSeeYetException {
         final List<Phone> phones = allPhones.allPhones();
-        if(phones == null || phones.isEmpty()){
+        if (phones == null || phones.isEmpty()){
             throw new NothingToSeeYetException();
         }
         return phones;

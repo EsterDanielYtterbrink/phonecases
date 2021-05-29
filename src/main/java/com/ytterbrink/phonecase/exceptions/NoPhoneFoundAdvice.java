@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class NoPhoneFoundAdvice {
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoMatchingPhoneException.class)
+    public void handleConflict(){
 
-        @ResponseStatus(HttpStatus.NOT_FOUND)
-        @ExceptionHandler(NoMatchingPhoneException.class)
-        public void handleConflict(){
-
-        }
     }
+}
 

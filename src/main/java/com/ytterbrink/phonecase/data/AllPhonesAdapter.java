@@ -1,13 +1,13 @@
 package com.ytterbrink.phonecase.data;
 
-import com.ytterbrink.phonecase.data.repositories.PhoneRepository;
-import com.ytterbrink.phonecase.domain.data.Phone;
-import com.ytterbrink.phonecase.domain.data_ports.AllPhones;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
+import com.ytterbrink.phonecase.data.repositories.PhoneRepository;
+import com.ytterbrink.phonecase.domain.data.Phone;
+import com.ytterbrink.phonecase.domain.data_ports.AllPhones;
 
 @Component
 public class AllPhonesAdapter implements AllPhones {

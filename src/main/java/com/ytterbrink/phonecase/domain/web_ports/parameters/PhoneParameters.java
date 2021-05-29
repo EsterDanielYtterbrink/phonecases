@@ -1,8 +1,8 @@
 package com.ytterbrink.phonecase.domain.web_ports.parameters;
 
-import lombok.Data;
-
 import java.util.Optional;
+
+import lombok.Data;
 
 @Data
 public class PhoneParameters {

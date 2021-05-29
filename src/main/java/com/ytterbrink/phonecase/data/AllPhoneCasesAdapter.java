@@ -1,13 +1,13 @@
 package com.ytterbrink.phonecase.data;
 
-import com.ytterbrink.phonecase.data.repositories.PhoneCaseRepository;
-import com.ytterbrink.phonecase.domain.data_ports.AllPhoneCases;
-import com.ytterbrink.phonecase.domain.data.PhoneCase;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import com.ytterbrink.phonecase.data.repositories.PhoneCaseRepository;
+import com.ytterbrink.phonecase.domain.data.PhoneCase;
+import com.ytterbrink.phonecase.domain.data_ports.AllPhoneCases;
 
 @Component
 public class AllPhoneCasesAdapter implements AllPhoneCases {
@@ -21,6 +21,6 @@ public class AllPhoneCasesAdapter implements AllPhoneCases {
 
     @Override
     public List<PhoneCase> allPhoneCases() {
-        return (List)repository.findAll();
+        return (List) repository.findAll();
     }
 }
