@@ -11,6 +11,8 @@
         <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
     </module>
     <module name="NewlineAtEndOfFile"/>
+    <module name="OrderedProperties"/>
+    <module name="UniqueProperties"/>
 
     <module name="TreeWalker">
         <module name="AnnotationLocation"/>
@@ -26,7 +28,8 @@
         <module name="AvoidStaticImport"/>
         <module name="BooleanExpressionComplexity"/>
         <module name="ClassDataAbstractionCoupling">
-            <property name="max" value="2"/>
+            <property name="excludeClassesRegexps" value=".*(Spy|Mock|Double|Fake|Zombie)$"/>
+            <property name="max" value="4"/>
         </module>
         <module name="ClassFanOutComplexity">
             <property name="max" value="14"/>
@@ -51,6 +54,7 @@
             <property name="allowMultipleEmptyLines" value="false"/>
         </module>
         <module name="EmptyStatement"/>
+        <module name="TrailingComment"/>
         <module name="EqualsAvoidNull"/>
         <module name="EqualsHashCode"/>
         <module name="ExplicitInitialization"/>
@@ -113,6 +117,7 @@
             <property name="option" value="nl"/>
             <property name="tokens" value="METHOD_REF"/>
         </module>
+        <module name="OuterTypeFilename"/>
         <module name="OverloadMethodsDeclarationOrder"/>
         <module name="PackageDeclaration"/>
         <module name="ParameterAssignment"/>
@@ -130,6 +135,7 @@
         <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
         <module name="UnnecessarySemicolonInEnumeration"/>
         <module name="UnnecessarySemicolonInTryWithResources"/>
+        <module name="UpperEll"/>
         <module name="VariableDeclarationUsageDistance"/>
 
         <module name="VisibilityModifier"/>

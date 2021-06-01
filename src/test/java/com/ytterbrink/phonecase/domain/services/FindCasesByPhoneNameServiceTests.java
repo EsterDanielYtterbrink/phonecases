@@ -1,26 +1,26 @@
 package com.ytterbrink.phonecase.domain.services;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import com.ytterbrink.phonecase.data.PhoneCaseEntity;
 import com.ytterbrink.phonecase.data.PhoneEntity;
 import com.ytterbrink.phonecase.data.PhoneShapeEntity;
 import com.ytterbrink.phonecase.domain.data.Phone;
 import com.ytterbrink.phonecase.domain.data.PhoneCase;
-import com.ytterbrink.phonecase.domain.data.PhoneShape;
-import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
 import com.ytterbrink.phonecase.domain.data_ports.FindCasesByPhone;
-import com.ytterbrink.phonecase.doubles.FindPhoneByNameMock;
+import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
+import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByNameMock;
 import com.ytterbrink.phonecase.exceptions.NoMatchingPhoneException;
 import com.ytterbrink.phonecase.exceptions.NothingToSeeYetException;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class FindCasesByPhoneNameServiceTests {
+
+    public static final String PHONE = "iPhone5";
 
     private static class FindPhoneCasesByPhoneMock implements FindCasesByPhone {
 
@@ -43,34 +43,50 @@ public class FindCasesByPhoneNameServiceTests {
     }
 
     @Test
-    public void canGetAllCasesForAPhone() throws NoMatchingPhoneException, NothingToSeeYetException {
-        Phone aPhone = new PhoneEntity("iPhone5", new PhoneShapeEntity());
-        List<PhoneCase> cases = Arrays.asList(new PhoneCaseEntity("fancy"), new PhoneCaseEntity("plain"));
-        FindPhoneCasesByPhoneMock casesFinder = new FindPhoneCasesByPhoneMock(aPhone, cases);
-        FindPhoneByName phoneFinder = new FindPhoneByNameMock(aPhone);
+    public void canGetAllCasesForAPhone()
+            throws NoMatchingPhoneException,
+            NothingToSeeYetException {
+        final Phone aPhone = new PhoneEntity(PHONE, new PhoneShapeEntity());
+        final List<PhoneCase> cases = Arrays.asList(
+                new PhoneCaseEntity("fancy"),
+                new PhoneCaseEntity("plain"));
 
-        FindCasesByPhoneNameService service = new FindCasesByPhoneNameService( phoneFinder, casesFinder);
-        assertThat(service.findCaseByPhone(aPhone.getName())).isEqualTo(cases);
+        final FindCasesByPhoneNameService service = new FindCasesByPhoneNameService(
+                new FindPhoneByNameMock(aPhone),
+                new FindPhoneCasesByPhoneMock(aPhone, cases)
+        );
+        Assertions.assertThat(service.findCaseByPhone(aPhone.getName())).isEqualTo(cases);
     }
 
     @Test
     public void canDealWithNoPhone(){
-        Phone aPhone = new PhoneEntity("iPhone5", new PhoneShapeEntity());
-        FindPhoneCasesByPhoneMock casesFinder = new FindPhoneCasesByPhoneMock(aPhone, null);
-        FindPhoneByName phoneFinder = new FindPhoneByNameMock(null);
-        FindCasesByPhoneNameService service = new FindCasesByPhoneNameService(phoneFinder, casesFinder);
-        final Throwable thrown = catchThrowable(()-> service.findCaseByPhone("missingPhone"));
-        assertThat(thrown).isInstanceOf(NoMatchingPhoneException.class);
+        final Phone aPhone = new PhoneEntity(PHONE, new PhoneShapeEntity());
+        final FindPhoneCasesByPhoneMock casesFinder = new FindPhoneCasesByPhoneMock(aPhone, null);
+        final FindPhoneByName phoneFinder = new FindPhoneByNameMock(null);
+        final FindCasesByPhoneNameService service = new FindCasesByPhoneNameService(
+                phoneFinder,
+                casesFinder
+        );
+        final Throwable thrown = Assertions.catchThrowable(
+                ()-> service.findCaseByPhone("missingPhone")
+        );
+        Assertions.assertThat(thrown).isInstanceOf(NoMatchingPhoneException.class);
     }
 
     @Test
     public void canDealWithNoFoundCases(){
-        Phone aPhone = new PhoneEntity("iPhone5", new PhoneShapeEntity());
-        FindPhoneCasesByPhoneMock casesFinder = new FindPhoneCasesByPhoneMock(aPhone, new LinkedList<>());
-        FindPhoneByName phoneFinder = new FindPhoneByNameMock(aPhone);
-        FindCasesByPhoneNameService service = new FindCasesByPhoneNameService(phoneFinder, casesFinder);
-        final Throwable thrown = catchThrowable(()-> service.findCaseByPhone(aPhone.getName()));
-        assertThat(thrown).isInstanceOf(NothingToSeeYetException.class);
+        final Phone aPhone = new PhoneEntity(PHONE, new PhoneShapeEntity());
+        final FindPhoneCasesByPhoneMock casesFinder = new FindPhoneCasesByPhoneMock(
+                aPhone,
+                new LinkedList<>());
+        final FindPhoneByName phoneFinder = new FindPhoneByNameMock(aPhone);
+        final FindCasesByPhoneNameService service = new FindCasesByPhoneNameService(
+                phoneFinder,
+                casesFinder);
+        final Throwable thrown = Assertions.catchThrowable(
+                ()-> service.findCaseByPhone(aPhone.getName())
+        );
+        Assertions.assertThat(thrown).isInstanceOf(NothingToSeeYetException.class);
 
     }
 }

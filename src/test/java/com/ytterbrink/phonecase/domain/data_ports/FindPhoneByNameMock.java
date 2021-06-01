@@ -1,9 +1,8 @@
-package com.ytterbrink.phonecase.doubles;
-
-import com.ytterbrink.phonecase.domain.data.Phone;
-import com.ytterbrink.phonecase.domain.data_ports.FindPhoneByName;
+package com.ytterbrink.phonecase.domain.data_ports;
 
 import java.util.Optional;
+
+import com.ytterbrink.phonecase.domain.data.Phone;
 
 public class FindPhoneByNameMock implements FindPhoneByName {
 

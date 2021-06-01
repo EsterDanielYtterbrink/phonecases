@@ -1,12 +1,9 @@
-package com.ytterbrink.phonecase.doubles;
+package com.ytterbrink.phonecase.domain.data_ports;
 
 import com.ytterbrink.phonecase.domain.data.PhoneShape;
-import com.ytterbrink.phonecase.domain.data_ports.FindPhoneShapeByPhoneName;
-import lombok.Getter;
 
 public class FindPhoneShapeByPhoneNameMock implements FindPhoneShapeByPhoneName {
 
-    @Getter
     private final PhoneShape phoneShape;
     private final String phoneName;
 

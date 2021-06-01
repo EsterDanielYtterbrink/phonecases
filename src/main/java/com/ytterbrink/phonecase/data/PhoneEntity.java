@@ -3,6 +3,7 @@ package com.ytterbrink.phonecase.data;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class PhoneEntity implements Phone {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Column(nullable = false)
     private String name;
 
     @ManyToOne(targetEntity = PhoneShapeEntity.class, cascade = CascadeType.PERSIST)
@@ -40,7 +42,7 @@ public class PhoneEntity implements Phone {
         this.name = name;
         this.phoneShape = phoneShape;
     }
-    
+
     public String getName() {
         return name;
     }

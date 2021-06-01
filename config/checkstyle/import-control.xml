@@ -6,10 +6,18 @@
 <import-control pkg="com.ytterbrink.phonecase"  strategyOnMismatch="disallowed">
     <allow class="org.springframework.beans.factory.annotation.Autowired"/>
     <allow class="java.util.List"/>
+    <allow pkg="org.jetbrains.annotations"/>
     <allow class="org.springframework.stereotype.Component"/>
     <file name=".*(PhoneCaseApplication)" regex="true">
         <allow class="org.springframework.boot.SpringApplication"/>
         <allow class="org.springframework.boot.autoconfigure.SpringBootApplication" />
+    </file>
+    <file name=".*(PhoneCaseApplicationTests)" regex="true">
+        <allow class="org.junit.jupiter.api.Test"/>
+        <allow pkg="org.springframework.boot.test"/>
+        <allow pkg="org.springframework.http"/>
+        <allow pkg="org.springframework.test.annotation"/>
+        <allow pkg="org.springframework.test.web.servlet"/>
     </file>
     <subpackage name="data">
         <allow class="java.util.Optional"/>
@@ -20,6 +28,14 @@
         <allow pkg="javax.persistence"/>
         <allow pkg="java.util"/>
         <allow class="com.fasterxml.jackson.annotation.JsonIgnore"/>
+        <file name=".*(Tests)" regex="true">
+            <allow pkg="org.junit.jupiter.api"/>
+            <allow pkg="org.assertj.core.api" />
+            <allow pkg="org.springframework.boot.test.autoconfigure.orm.jpa"/>
+            <allow class="java.util.Arrays"/>
+            <allow class="java.util.LinkedList"/>
+            <allow class="java.util.List"/>
+        </file>
         <subpackage name="repositories">
             <allow pkg="com.ytterbrink.phonecase.data"/>
             <allow class="org.springframework.data.jpa.repository.JpaRepository"/>
@@ -32,6 +48,9 @@
             <allow class="com.ytterbrink.phonecase.data.PhoneCaseEntity"/>
             <allow class="com.ytterbrink.phonecase.data.PhoneShapeEntity"/>
             <allow class="java.util.Optional"/>
+            <file name=".*(Spy|Mock|Double|Zombie)" regex="true">
+                <allow class="java.util.UUID"/>
+            </file>
         </subpackage>
         <subpackage name="web_ports">
             <allow pkg="com.ytterbrink.phonecase.exceptions"/>
@@ -47,6 +66,15 @@
             <allow pkg="com.ytterbrink.phonecase.domain.data_ports"/>
             <allow pkg="com.ytterbrink.phonecase.domain.web_ports"/>
             <allow pkg="com.ytterbrink.phonecase.data"/>
+            <file name=".*(Tests)" regex="true">
+                <allow pkg="org.junit.jupiter.api"/>
+                <allow pkg="org.assertj.core.api" />
+                <allow class="java.util.UUID"/>
+                <allow pkg="com.ytterbrink.phonecase.domain.data"/>
+                <allow class="java.util.Arrays"/>
+                <allow class="java.util.LinkedList"/>
+                <allow class="java.util.List"/>
+            </file>
         </subpackage>
     </subpackage>
     <subpackage name="exceptions">
