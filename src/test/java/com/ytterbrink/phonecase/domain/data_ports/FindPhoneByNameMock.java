@@ -13,7 +13,7 @@ public class FindPhoneByNameMock implements FindPhoneByName {
     }
 
     @Override
-    public Optional<Phone> findPhoneByName(String name) {
-        return Optional.ofNullable(phone);
+    public Phone findPhoneByName(String name) {
+        return phone;
     }
 }

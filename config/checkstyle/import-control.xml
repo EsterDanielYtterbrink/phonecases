@@ -62,6 +62,7 @@
         </subpackage>
         <subpackage name="services">
             <allow class="org.springframework.stereotype.Service"/>
+            <allow class="java.util.Optional"/>
             <allow pkg="com.ytterbrink.phonecase.exceptions"/>
             <allow pkg="com.ytterbrink.phonecase.domain.data_ports"/>
             <allow pkg="com.ytterbrink.phonecase.domain.web_ports"/>

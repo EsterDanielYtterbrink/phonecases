@@ -20,7 +20,7 @@ public class FindPhoneByNameAdapter implements FindPhoneByName {
     }
 
     @Override
-    public Optional<Phone> findPhoneByName(String name) {
-        return Optional.ofNullable(phoneRepository.findOneByName(name));
+    public Phone findPhoneByName(String name) {
+        return phoneRepository.findOneByName(name);
     }
 }
