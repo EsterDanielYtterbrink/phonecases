@@ -21,7 +21,7 @@ public class CreatePhoneServiceTests {
     private static final String SIMILAR_PHONE_NAME = "iPhoneSE";
 
     @Test
-    public void savesPhoneAndCreateNewPhoneShape() {
+    public void createsPhoneAndCreateNewPhoneShape() {
         final PhoneShapeEntity phoneShape =  new PhoneShapeEntity();
         final CreatePhoneShapeSpy createPhoneShapeSpy = new CreatePhoneShapeSpy();
         final CreatePhoneService service = getCreatePhoneService(
@@ -50,7 +50,7 @@ public class CreatePhoneServiceTests {
     }
 
     @Test
-    public void savesPhoneWithOldPhoneShape(){
+    public void createsPhoneWithOldPhoneShape(){
         final PhoneShapeEntity oldShape = new PhoneShapeEntity();
         oldShape.setId(UUID.randomUUID());
         final CreatePhoneService service = getCreatePhoneService(

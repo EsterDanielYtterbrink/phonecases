@@ -19,22 +19,22 @@ public class PhoneCaseController {
 
     private final AllPhoneCasesFacade allPhoneCases;
     private final FindCasesByPhoneNameFacade findCasesByPhoneName;
-    private final CreatePhoneCaseFacade savePhoneCase;
+    private final CreatePhoneCaseFacade createPhoneCase;
 
     @Autowired
     public PhoneCaseController(
             AllPhoneCasesFacade allPhoneCases,
             FindCasesByPhoneNameFacade findCasesByPhoneName,
-            CreatePhoneCaseFacade savePhoneCase) {
+            CreatePhoneCaseFacade createPhoneCase) {
         this.allPhoneCases = allPhoneCases;
         this.findCasesByPhoneName = findCasesByPhoneName;
-        this.savePhoneCase = savePhoneCase;
+        this.createPhoneCase = createPhoneCase;
     }
     
     @PostMapping("/phoneCases")
     @ResponseStatus(HttpStatus.CREATED)
     public PhoneCase newPhoneCase(@RequestBody PhoneCaseParameters phoneCase){
-        return savePhoneCase.createPhoneCase(phoneCase);
+        return createPhoneCase.createPhoneCase(phoneCase);
     }
 
     @GetMapping("/phoneCases")
