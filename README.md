@@ -8,7 +8,7 @@ and the last time I did Java as my full time job it was Sun who did the Java cer
 - A spring boot application using postgresSQL.
 - Dependencies and building is done with Gradle.
 - Lombok is used to generate scaffolds as getters and setters.
-- Spring boot is used for dependency injection.
+- It uses Spring boot for dependency injection.
 - JPA annotations define the database structure.
 
 ## Architecture
@@ -55,7 +55,6 @@ To avoid exposing this implementation detail to the world,
 there are parameter objects that contain only the parts that the consumer of the API need to know about.
 
 ## TODO
-- More linting rules
 - Better consistency in naming. PhoneCase vs Case.
 - Making sure that the edge-cases are in place in the services
 - Make it proper REST with hyperlinks
@@ -63,5 +62,6 @@ there are parameter objects that contain only the parts that the consumer of the
 - Check that it works with an empty database
 - Use some kind of web tool to check that the things that work in the integration test also works in a real world scenario.
 - Add more information to the phones and to the phone cases
-- Containerise it, so that no db is needed to be installed to test it.
-- Consider splitting persistence objects and domain objects to separate classes.
+- Containerise it, so that no db needs to be installed to test it.
+- Find a better way to split domain object and persistence classes into different representations.
+   Perhaps look into how factories could be used.
